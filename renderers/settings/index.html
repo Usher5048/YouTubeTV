@@ -134,12 +134,19 @@
         color: #181818
     }
     select {
-        background: transparent;
+        background: var(--btn-background);
+        color: var(--text);
         border: 1px solid var(--text);
         border-radius: .25rem;
         padding: .5rem;
         box-sizing: border-box;
         user-select: initial;
+    }
+    
+    select option {
+        background: var(--btn-background);
+        color: var(--text);
+        padding: .5rem;
     }
     .icon {
         font-family: 'yti';
