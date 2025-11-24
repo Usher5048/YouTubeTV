@@ -2,6 +2,7 @@ import { readFile } from 'fs/promises';
 import { platform } from 'os';
 import { cwd } from 'process';
 import { join } from 'path';
+import { networkInterfaces } from 'os';
 import { Settings } from '../settings/settings.renderer';
 
 import { app,
@@ -202,8 +203,10 @@ export class Renderer {
             }
         })
 
+        globalShortcut.register('f11', () => { this.fullScreen = !this.window.isFullScreen(); })
         globalShortcut.register('ctrl+f', () => { this.fullScreen = !this.window.isFullScreen(); })
 
+        globalShortcut.register('ctrl+shift+i', () => { this.window.webContents.toggleDevTools(); })
         globalShortcut.register('ctrl+d', () => { this.window.webContents.toggleDevTools(); })
 
         globalShortcut.register('ctrl+a', () => this.cursor = null);
