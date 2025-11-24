@@ -49,8 +49,6 @@ Behavior on ARM platforms (Windows/macOS) remains untested. ARM Linux is usable 
 ## Changes (Unofficial Fork)
 
 ### 2.4.2
-- Revised README.
-- Added English translations to Spanish comments in `injection.js`.
 - Removed the buggy connection handler that caused banners to get stuck.
 - Restored missing fullscreen and DevTools shortcuts.
 - Converted global shortcuts into local event listeners to prevent interference with other applications.
@@ -78,3 +76,4 @@ A window for adjusting maximum playback resolution can be opened with `Ctrl + S`
 
 Default resolution limits exist due to typical integrated GPU performance constraints, as higher resolutions (2K/4K) can cause severe degradation on shared-memory systems.  
 Users may change this manually, but YouTube may override settings based on detected bandwidth.
+
