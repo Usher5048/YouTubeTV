@@ -38,8 +38,8 @@ All users must build from source.
 ## Keyboard Shortcuts
 
 - Max resolution configuration panel: `Ctrl + S`
-- Fullscreen: `Ctrl + F`
-- Developer Tools: `Ctrl + D`
+- Fullscreen: `Ctrl + F or f11`
+- Developer Tools: `Ctrl + D or Ctrl + Shift + I`
 - Toggle cursor visibility: `Ctrl + A`
 
 Functionality on Windows/macOS ARM platforms remains untested; ARM Linux is supported via Raspberry Pi (armv7l).
@@ -67,3 +67,4 @@ Resolution defaults are limited due to typical hardware constraints.
 Most systems use integrated GPUs that share system memory, which can cause extreme performance degradation at resolutions above 2K/4K.
 
 Users may override this, but YouTube may auto-adjust resolution based on measured bandwidth, sometimes choosing levels the hardware cannot comfortably handle.
+
