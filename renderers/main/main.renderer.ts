@@ -79,6 +79,8 @@ export class Renderer {
                     this.settings.destroy();
                     this.settings = null;
                 }
+                // Clean up any remaining global shortcuts
+                globalShortcut.unregisterAll();
             })
         })
         .on('window-all-closed', () => { app.quit() })
@@ -194,22 +196,43 @@ export class Renderer {
      */
     private setAccelerators() {
 
-        globalShortcut.register('ctrl+s', () => {
-            if (this.settings) {
-                this.settings.destroy();
-                this.settings = null;
-            } else {
-                this.settings = new Settings();
+        // Use local accelerators instead of global shortcuts to avoid interfering with other apps
+        this.window.webContents.on('before-input-event', (event, input) => {
+            if (input.type === 'keyDown') {
+                const ctrl = input.control || input.meta;
+                const shift = input.shift;
+                
+                // Settings toggle (Ctrl+S)
+                if (ctrl && input.key.toLowerCase() === 's') {
+                    event.preventDefault();
+                    if (this.settings) {
+                        this.settings.destroy();
+                        this.settings = null;
+                    } else {
+                        this.settings = new Settings();
+                    }
+                }
+                
+                // Fullscreen toggle (F11 or Ctrl+F)
+                if (input.key === 'F11' || (ctrl && input.key.toLowerCase() === 'f')) {
+                    event.preventDefault();
+                    this.fullScreen = !this.window.isFullScreen();
+                }
+                
+                // Developer tools toggle (Ctrl+Shift+I or Ctrl+D)
+                if ((ctrl && shift && input.key.toLowerCase() === 'i') || 
+                    (ctrl && input.key.toLowerCase() === 'd')) {
+                    event.preventDefault();
+                    this.window.webContents.toggleDevTools();
+                }
+                
+                // Cursor toggle (Ctrl+A)
+                if (ctrl && input.key.toLowerCase() === 'a') {
+                    event.preventDefault();
+                    this.cursor = null;
+                }
             }
-        })
-
-        globalShortcut.register('f11', () => { this.fullScreen = !this.window.isFullScreen(); })
-        globalShortcut.register('ctrl+f', () => { this.fullScreen = !this.window.isFullScreen(); })
-
-        globalShortcut.register('ctrl+shift+i', () => { this.window.webContents.toggleDevTools(); })
-        globalShortcut.register('ctrl+d', () => { this.window.webContents.toggleDevTools(); })
-
-        globalShortcut.register('ctrl+a', () => this.cursor = null);
+        });
         
     }
 
