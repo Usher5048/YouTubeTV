@@ -1,16 +1,16 @@
 # YouTube TV (Unofficial Fork)
 
-This is a maintained fork of the abandoned YouTube TV Electron client.  
-It provides a simple desktop interface that behaves like a YouTube-capable TV device: you can connect from a phone or Chrome browser and cast videos directly to the app.
+This is an actively maintained fork of the abandoned YouTube TV Electron client.  
+It recreates the YouTube TV experience on desktop, allowing casting from a phone or Chrome browser just like a smart TV or Chromecast device.
 
-I will not be providing prebuilt binaries.  
-If you want to use this project, you must build it yourself from source.
+I will only be releasing **Windows** binaries for convenience.  
+Users on Linux and macOS should **build from source**, as their platforms are not officially supported in this fork.
 
 ---
 
 ## Overview
 
-This client implements a DIAL server (based on SSDP) to allow pairing with devices that use the same protocol.  
+This client implements a DIAL server (SSDP-based) to allow pairing with devices that support the protocol.  
 Only YouTube functionality is implemented.
 
 The application uses the official user agent expected by YouTube TV:
@@ -19,7 +19,7 @@ The application uses the official user agent expected by YouTube TV:
 Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.77 Large Screen Safari/534.24 GoogleTV/092754
 ```
 
-You can launch the project with either:
+You can launch the project using:
 
 - `npm start`
 - `npx electron .`
@@ -29,42 +29,52 @@ You can launch the project with either:
 
 ## Builds
 
-The original project distributed binaries for Linux, macOS, and Windows across various architectures.  
-This fork does *not* provide any binaries.  
-All users must build from source.
+The original project shipped binaries for all major desktops.  
+This fork ships **Windows builds only**.  
+Linux and macOS users must compile the app themselves.
 
 ---
 
 ## Keyboard Shortcuts
 
-- Max resolution configuration panel: `Ctrl + S`
-- Fullscreen: `Ctrl + F or f11`
-- Developer Tools: `Ctrl + D or Ctrl + Shift + I`
+- Max resolution settings window: `Ctrl + S`
+- Fullscreen toggle: `Ctrl + F` or `F11`
+- Developer Tools: `Ctrl + D` or `Ctrl + Shift + I`
 - Toggle cursor visibility: `Ctrl + A`
 
-Functionality on Windows/macOS ARM platforms remains untested; ARM Linux is supported via Raspberry Pi (armv7l).
+Behavior on ARM platforms (Windows/macOS) remains untested. ARM Linux is usable on Raspberry Pi (armv7l).
 
 ---
 
-## Last Changes (2.4.0 / 2.4.1 from the original)
+## Changes (Unofficial Fork)
+
+### 2.4.2
+- Revised README.
+- Added English translations to Spanish comments in `injection.js`.
+- Removed the buggy connection handler that caused banners to get stuck.
+- Restored missing fullscreen and DevTools shortcuts.
+- Converted global shortcuts into local event listeners to prevent interference with other applications.
+- Fixed selector visibility issues and restored dark theme styling.
+- Reintroduced the YouTube icon in the settings window.
+- General cleanup, UI consistency fixes, and minor renderer improvements.
+
+---
+
+## Previous Changes (Original Project)
 
 ### 2.4.1
-- Fixed an issue where the YouTube TV process failed to fully close on non-macOS platforms.
+- Fixed incomplete shutdown behavior on non-macOS platforms.
 - Transparent title bar on macOS.
-- Fixed missing Spanish title in the window bar.
+- Corrected missing Spanish title.
 
 ### 2.4.0
-- Persistent storage of main-window state: size, position, fullscreen, and cursor visibility.
+- Window position, size, fullscreen state, and cursor visibility are now stored persistently.
 
 ---
 
 ## Configuration
 
-A window for configuring maximum playback resolution is included.  
-Open it with `Ctrl + S`.
+A window for adjusting maximum playback resolution can be opened with `Ctrl + S`.
 
-Resolution defaults are limited due to typical hardware constraints.  
-Most systems use integrated GPUs that share system memory, which can cause extreme performance degradation at resolutions above 2K/4K.
-
-Users may override this, but YouTube may auto-adjust resolution based on measured bandwidth, sometimes choosing levels the hardware cannot comfortably handle.
-
+Default resolution limits exist due to typical integrated GPU performance constraints, as higher resolutions (2K/4K) can cause severe degradation on shared-memory systems.  
+Users may change this manually, but YouTube may override settings based on detected bandwidth.
