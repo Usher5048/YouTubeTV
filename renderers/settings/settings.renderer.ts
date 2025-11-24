@@ -16,6 +16,7 @@ export class Settings {
 				height: 500,
 				title: 'Settings',
 				backgroundColor: '#181818',
+				icon: join(app.getAppPath(), 'build', 'icon.png'),
 				webPreferences: {
 					contextIsolation: false,
 					nodeIntegration: true
@@ -27,7 +28,8 @@ export class Settings {
 				renderer.setMaxRes(params);
 			})
 
-			globalShortcut.register('ctrl+shift+d', () => { this.window.webContents.toggleDevTools() });
+			globalShortcut.register('ctrl+d', () => { this.window.webContents.toggleDevTools() });
+			globalShortcut.register('ctrl+shift+i', () => { this.window.webContents.toggleDevTools() });
 
 			this.window.loadFile(join(__dirname, 'index.html'));
 		})
