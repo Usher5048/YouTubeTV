@@ -1,6 +1,6 @@
 # YouTube TV (Unofficial Fork)
 
-This is an actively maintained fork of the abandoned YouTube TV Electron client.  
+This is an actively maintained fork of the ~~abandoned~~<sub> As of 02/04/26 the original project that had long been abandoned has started to see active contributions and commits, I will still continue bug fixing and maintaining this fork, but will not be adding any new features brought from the newly updated repo, the issues I have gone through fixing in this fork are still presistent inside the original repository so I still believe there is a use for my fork - Time <3</sub> YouTube TV Electron client.  
 It recreates the YouTube TV experience on desktop, allowing casting from a phone or Chrome browser just like a smart TV or Chromecast device.
 
 I will only be releasing **Windows** binaries for convenience.  
@@ -76,4 +76,5 @@ A window for adjusting maximum playback resolution can be opened with `Ctrl + S`
 
 Default resolution limits exist due to typical integrated GPU performance constraints, as higher resolutions (2K/4K) can cause severe degradation on shared-memory systems.  
 Users may change this manually, but YouTube may override settings based on detected bandwidth.
+
 
